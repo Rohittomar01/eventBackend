@@ -96,5 +96,31 @@ router.post("/studentchkadminlogin",(req,res)=>{
 });
 
 
+router.post('/addevents',((req, res) => {
+  console.log(req.body)
+  pool.query("insert into subevent_of_mainevents (subeventname, description, image, venue, time, date, rules, coordinator, conumber, registrationfee) values(?,?,?,?,?,?,?,?,?,?)",
+  [
+    req.body.eventName,
+    req.body.description,
+    req.body.image,
+    req.body.venue,
+    req.body.time,
+    req.body.date,
+    req.body.rules,
+    req.body.coordinator,
+    req.body.conumber,
+    req.body.registrationfee
+  ]),((error,result)=>{
+    if(error) {
+      console.log("Error Occurs", error);
+      res.status(400).json({ status: false, message: "Server Error" });
+    } else {
+      console.log("true", result);
+      res.status(200).json({ status: true, message: "Successfully send" });
+    }
+  })
+}))
+
+
 
 module.exports = router;
