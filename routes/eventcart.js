@@ -25,13 +25,11 @@ router.get("/get_event_total", (req, res) => {
         res.status(400).json({ status: false, message: "Server Error" });
       } else {
         console.log("true", result);
-        res
-          .status(200)
-          .json({
-            status: true,
-            data: result[0],
-            message: "Successfully fetch",
-          });
+        res.status(200).json({
+          status: true,
+          data: result[0],
+          message: "Successfully fetch",
+        });
       }
     }
   );
